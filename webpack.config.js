@@ -64,6 +64,9 @@ module.exports = {
 	devtool: "cheap-eval-source-map",
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		new ExtractTextPlugin("[name].css"),
+		new ExtractTextPlugin("normalize.css"),
+		new ExtractTextPlugin("blueprint.css"),
+		new ExtractTextPlugin("app.css"),
+		new ExtractTextPlugin("app.less"),
 	]
 };
