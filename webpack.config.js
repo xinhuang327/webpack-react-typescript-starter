@@ -32,7 +32,8 @@ module.exports = {
 			},
 			{
 				test: /\.js$/, //Check for all js files
-				use: ['babel-loader']
+				use: ['babel-loader'],
+				exclude: /node_modules/,
 			},
 			{
 				test: /\.css$/,

@@ -8,7 +8,7 @@ function HomePage(props) {
 			<h1 className={styles.title}>Dva boilerplate with typescript</h1>
 			Count: {props.count}
 			<hr />
-			<button onClick={() => { props.dispatch({ type: 'count/add' }); }}>Add</button>
+			<button onClick={() => { props.dispatch({ type: 'count/add' }); }}>Add~~</button>
 			<button onClick={() => { props.dispatch({ type: 'count/addWithDelay' }); }}>Add With Delay</button>
 			<button onClick={() => { props.dispatch({ type: 'count/minus' }); }}>Minus</button>
 			<button onClick={() => { props.dispatch({ type: 'count/redirect' }); }}>redirect</button>
