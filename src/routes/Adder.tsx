@@ -2,17 +2,16 @@ import * as React from 'react'
 import { connect } from 'typed-dva'
 const styles = require('./HomePage.css')
 
-function HomePage(props) {
+function Adder(props) {
 	return (
 		<div className={styles.normal}>
-			<h1 className={styles.title}>Dva boilerplate with typescript</h1>
+			<h1 className={styles.title}>Adder</h1>
 			Count: {props.count}
 			<hr />
 			<button onClick={() => { props.dispatch({ type: 'count/add' }); }}>Add~~</button>
 			<button onClick={() => { props.dispatch({ type: 'count/addWithDelay' }); }}>Add With Delay</button>
 			<button onClick={() => { props.dispatch({ type: 'count/minus' }); }}>Minus</button>
 			<button onClick={() => { props.dispatch({ type: 'count/redirect' }); }}>redirect</button>
-			<a href="#/adder">Adder</a>
 		</div>
 	);
 }
@@ -23,4 +22,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps)(Adder);

@@ -1,11 +1,13 @@
 import { Router } from 'react-router';
 import * as routerRedux from "react-router-redux"
 
+import { Model } from "typed-dva"
+
 // import "babel-polyfill"
 
 const delay = (timeout) => new Promise(resolve => setTimeout(resolve, timeout));
 
-export default {
+let model: Model = {
 	namespace: 'count',
 	state: 0,
 	reducers: {
@@ -22,3 +24,5 @@ export default {
 		},
 	},
 }
+
+export default model
