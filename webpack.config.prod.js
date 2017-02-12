@@ -60,7 +60,6 @@ module.exports = {
 			}
 		]
 	},
-	devtool: "cheap-eval-source-map",
 	plugins: [
 		new ExtractTextPlugin("[name].css"),
 		new ExtractTextPlugin("[name].less"),
