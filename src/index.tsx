@@ -1,23 +1,23 @@
-import dva, { connect } from 'typed-dva';
+import dva from 'typed-dva'
 import Routers from "./router"
-import CountModel from "./models/count"
-import * as createLoading from 'dva-loading';
+import ItemModel from "./models/item"
+import UserModel from "./models/user"
+import * as createLoading from 'dva-loading'
 // import './index.html';
-import './index.less';
+import './index.less'
 
 // 1. Initialize
-const app = dva();
+const app = dva()
 
 // 2. Plugin
-app.use(createLoading());
+app.use(createLoading())
 
 // 3. Model
-// app.model(require('./models/item'));
-// app.model(require('./models/user'));
-app.model(CountModel)
+app.model(ItemModel)
+app.model(UserModel)
 
 // 4. Router
-app.router(Routers);
+app.router(Routers)
 
 // 5. Start
-app.start('#root');
+app.start('#root')

@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Router, Route, IndexRoute, Link, Redirect } from 'react-router';
-import ListPage from './routes/HomePage';
-import ItemPage from './routes/NotFound';
-import UserPage from './routes/Adder';
+import * as React from 'react'
+import { Router, Route, IndexRoute, Link, Redirect } from 'react-router'
+import ListPage from './routes/ListPage'
+import ItemPage from './routes/ItemPage'
+import UserPage from './routes/UserPage'
 
 export default function ({ history }) {
 	return (
@@ -31,5 +31,5 @@ export default function ({ history }) {
 			<Route path="/item/:itemId" component={ItemPage} />
 			<Route path="/user(/:userId)" component={UserPage} />
 		</Router>
-	);
+	)
 }
