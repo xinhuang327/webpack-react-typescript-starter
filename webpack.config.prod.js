@@ -4,7 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
 	context: __dirname + '/src', // `__dirname` is root of project and `src` is source
 	entry: [
-		'./app.tsx',
+		'./index.tsx',
 	],
 	output: {
 		path: __dirname + '/dist', // `dist` is the destination
@@ -21,15 +21,16 @@ module.exports = {
 		rules: [
 			{
 				test: /\.tsx?$/,
-				loader: ['react-hot-loader', 'ts-loader'],
+				use: [
+					'babel-loader',
+					'ts-loader'
+				],
 				exclude: /node_modules/,
 			},
 			{
 				test: /\.js$/, //Check for all js files
-				use: [{
-					loader: 'babel-loader',
-					options: { presets: ['es2015'] }
-				}]
+				use: ['babel-loader'],
+				exclude: /node_modules/,
 			},
 			{
 				test: /\.css$/,
