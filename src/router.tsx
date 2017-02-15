@@ -4,10 +4,16 @@ import ListPage from './routes/ListPage'
 import ItemPage from './routes/ItemPage'
 import UserPage from './routes/UserPage'
 
+// <Redirect from="/" to="/top" />
+// 			<Route path="/top">
+// 				<IndexRoute component={ListPage} />
+// 				<Route path=":page" component={ListPage} />
+// 			</Route>
+
 export default function ({ history }) {
 	return (
 		<Router history={history}>
-			<Redirect from="/" to="/top" />
+
 			<Route path="/top">
 				<IndexRoute component={ListPage} />
 				<Route path=":page" component={ListPage} />
@@ -30,6 +36,11 @@ export default function ({ history }) {
 			</Route>
 			<Route path="/item/:itemId" component={ItemPage} />
 			<Route path="/user(/:userId)" component={UserPage} />
+
+			<Route path="/">
+				<IndexRoute component={ListPage} />
+				<Route path=":page" component={ListPage} />
+			</Route>
 		</Router>
 	)
 }

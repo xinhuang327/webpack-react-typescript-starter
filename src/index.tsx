@@ -6,8 +6,13 @@ import * as createLoading from 'dva-loading'
 // import './index.html';
 import './index.less'
 
+import { hashHistory, browserHistory } from "react-router"
+
+
 // 1. Initialize
-const app = dva()
+const app = dva({
+	history: hashHistory,
+})
 
 // 2. Plugin
 app.use(createLoading())

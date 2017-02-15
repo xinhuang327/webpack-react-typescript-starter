@@ -49,21 +49,23 @@ let ItemModel: Model = {
 			}
 
 			return history.listen(({ pathname }) => {
+				let typeToFetch = "top"
+				let pageToFetch = "1"
 				for (const type of ITEM_TYPES) {
 					const match = pathToRegexp(`/${type}/:page?`).exec(pathname);
 					if (match) {
-						const page = match[1];
-
-						// fetch
-						fetchList(type, page);
-
-						// watch
-						if (activeType !== type) {
-							activeType = type;
-							if (unwatchList) unwatchList();
-							unwatchList = doWatchList(type);
-						}
+						pageToFetch = match[1];
+						typeToFetch = type
 					}
+				}
+				// fetch
+				fetchList(typeToFetch, pageToFetch);
+
+				// watch
+				if (activeType !== typeToFetch) {
+					activeType = typeToFetch;
+					if (unwatchList) unwatchList();
+					unwatchList = doWatchList(typeToFetch);
 				}
 			});
 		},
