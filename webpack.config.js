@@ -3,14 +3,16 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
 	context: __dirname + '/src', // `__dirname` is root of project and `src` is source
-	entry: [
-		'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
-		'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-		'./app.tsx',
-	],
+	entry: {
+		'app': [
+			'webpack-dev-server/client?http://0.0.0.0:8080',  // WebpackDevServer host and port
+			'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+			'./app.tsx'
+		],
+	},
 	output: {
 		path: __dirname + '/dist', // `dist` is the destination
-		filename: 'bundle.js',
+		filename: '[name].js',
 		publicPath: "/dist",
 	},
 	devServer: {
@@ -34,18 +36,34 @@ module.exports = {
 				}]
 			},
 			{
-				test: /\.css$/,
-				use: [
-					'style-loader',
-					{
-						loader: 'css-loader',
-						options: {
-							modules: true,
-							localIdentName: '[name]__[local]___[hash:base64:5]'
+				test: /\.scss$/,
+				use: ExtractTextPlugin.extract({
+					fallback: "style-loader",
+					use: [
+						'css-loader',
+						{
+							loader: 'sass-loader',
+							options: {
+								outputStyle: "compressed"
+							}
 						}
-					},
-					// 'postcss-loader',
-				],
+					]
+				})
+			},
+			{
+				test: /\.css$/,
+				use: ExtractTextPlugin.extract({
+					fallback: "style-loader",
+					use: [
+						{
+							loader: 'css-loader',
+							options: {
+								modules: true,
+								localIdentName: '[name]__[local]___[hash:base64:5]'
+							}
+						},
+					]
+				}),
 			},
 			{
 				test: /\.less$/,
@@ -60,26 +78,13 @@ module.exports = {
 					},
 					'less-loader'
 				]
-			},
-			{
-				test: /\.scss$/,
-				use: [
-					'style-loader',
-					'css-loader',
-					{
-						loader: 'sass-loader',
-						options: {
-							outputStyle: "compressed"
-						}
-					}
-				]
 			}
 		]
 	},
 	devtool: "cheap-eval-source-map",
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
 		new ExtractTextPlugin("[name].css"),
+		new webpack.HotModuleReplacementPlugin(),
 		new webpack.LoaderOptionsPlugin({
 			options: {
 				sassLoader: {

@@ -1,5 +1,6 @@
 //import styles
 import 'grommet/scss/vanilla/index'
+let styles = require("./app.css")
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
@@ -71,7 +72,6 @@ class Main extends React.Component<any, any> {
 
 	}
 	render() {
-		console.log(Title)
 		return (
 			<App centered inline>
 				<Headline align="center">
@@ -82,6 +82,7 @@ class Main extends React.Component<any, any> {
 					<Button label='Leave'
 						primary={true}
 						onClick={this.handleClick} />
+					<button className={styles.Button}>MyBUTTON</button>
 					<Animate enter={{ animation: "fade", duration: 1000, delay: 0 }} keep={true}>
 						<Box direction='row'>
 							<Box
