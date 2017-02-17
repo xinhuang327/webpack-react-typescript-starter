@@ -7,6 +7,10 @@
 		"target": "es5",
 		"jsx": "react",
 		"allowJs": true,
-		"allowSyntheticDefaultImports": true
-	}
+		"allowSyntheticDefaultImports": false
+	},
+	"include": [
+		"src/**/*",
+		"typings_my/*.d.ts"
+	]
 }

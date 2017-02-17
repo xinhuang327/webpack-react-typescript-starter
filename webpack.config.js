@@ -1,5 +1,5 @@
-var webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var webpack = require('webpack')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
 	context: __dirname + '/src', // `__dirname` is root of project and `src` is source
@@ -17,7 +17,7 @@ module.exports = {
 		contentBase: __dirname + '/src',
 	},
 	resolve: {
-		extensions: [".tsx", ".ts", ".js"]
+		extensions: [".tsx", ".ts", ".js", '.scss', '.css', '.json']
 	},
 	module: {
 		rules: [
@@ -38,7 +38,8 @@ module.exports = {
 				use: [
 					'style-loader',
 					{
-						loader: 'css-loader', options: {
+						loader: 'css-loader',
+						options: {
 							modules: true,
 							localIdentName: '[name]__[local]___[hash:base64:5]'
 						}
@@ -51,12 +52,26 @@ module.exports = {
 				use: [
 					'style-loader',
 					{
-						loader: 'css-loader', options: {
+						loader: 'css-loader',
+						options: {
 							modules: true,
 							localIdentName: '[name]__[local]___[hash:base64:5]'
 						}
 					},
 					'less-loader'
+				]
+			},
+			{
+				test: /\.scss$/,
+				use: [
+					'style-loader',
+					'css-loader',
+					{
+						loader: 'sass-loader',
+						options: {
+							outputStyle: "compressed"
+						}
+					}
 				]
 			}
 		]
@@ -65,5 +80,15 @@ module.exports = {
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new ExtractTextPlugin("[name].css"),
+		new webpack.LoaderOptionsPlugin({
+			options: {
+				sassLoader: {
+					includePaths: [
+						'./node_modules'
+					]
+				},
+				context: __dirname,
+			},
+		}),
 	]
-};
+}
