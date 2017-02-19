@@ -1,71 +1,100 @@
-var webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var webpack = require('webpack')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
 	context: __dirname + '/src', // `__dirname` is root of project and `src` is source
-	entry: [
-		'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
-		'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-		'./app.tsx',
-	],
+	entry: {
+		'app': [
+			'webpack-dev-server/client?http://0.0.0.0:8080',  // WebpackDevServer host and port
+			'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+			'./app.tsx'
+		],
+	},
 	output: {
 		path: __dirname + '/dist', // `dist` is the destination
-		filename: 'bundle.js',
+		filename: '[name].js',
 		publicPath: "/dist",
 	},
 	devServer: {
 		contentBase: __dirname + '/src',
 	},
 	resolve: {
-		extensions: [".tsx", ".ts", ".js"]
+		extensions: [".tsx", ".ts", ".js", '.scss', '.css', '.json']
 	},
 	module: {
 		rules: [
 			{
 				test: /\.tsx?$/,
-				use: [
-					'react-hot-loader',
-					'babel-loader',
-					'ts-loader'
-				],
+				loader: ['react-hot-loader', 'ts-loader'],
 				exclude: /node_modules/,
 			},
 			{
 				test: /\.js$/, //Check for all js files
-				use: ['babel-loader'],
-				exclude: /node_modules/,
+				use: [{
+					loader: 'babel-loader',
+				}]
+			},
+			{
+				test: /\.scss$/,
+				use: ExtractTextPlugin.extract({
+					fallback: "style-loader",
+					use: [
+						'css-loader',
+						{
+							loader: 'sass-loader',
+							options: {
+								outputStyle: "compressed"
+							}
+						}
+					]
+				})
 			},
 			{
 				test: /\.css$/,
-				use: [
-					'style-loader',
-					{
-						loader: 'css-loader', options: {
-							modules: true,
-							localIdentName: '[name]__[local]___[hash:base64:5]'
-						}
-					},
-					// 'postcss-loader',
-				],
+				use: ExtractTextPlugin.extract({
+					fallback: "style-loader",
+					use: [
+						{
+							loader: 'css-loader',
+							options: {
+								modules: true,
+								localIdentName: '[name]__[local]___[hash:base64:5]'
+							}
+						},
+					]
+				}),
 			},
 			{
 				test: /\.less$/,
-				use: [
-					'style-loader',
-					{
-						loader: 'css-loader', options: {
-							modules: true,
-							localIdentName: '[name]__[local]___[hash:base64:5]'
-						}
-					},
-					'less-loader'
-				]
+				use: ExtractTextPlugin.extract({
+					fallback: "style-loader",
+					use: [
+						{
+							loader: 'css-loader',
+							options: {
+								modules: true,
+								localIdentName: '[name]__[local]___[hash:base64:5]'
+							}
+						},
+						'less-loader'
+					]
+				}),
 			}
 		]
 	},
-	devtool: "source-map",
+	devtool: "eval",
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
 		new ExtractTextPlugin("[name].css"),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.LoaderOptionsPlugin({
+			options: {
+				sassLoader: {
+					includePaths: [
+						'./node_modules'
+					]
+				},
+				context: __dirname,
+			},
+		}),
 	]
-};
+}

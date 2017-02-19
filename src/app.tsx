@@ -1,9 +1,8 @@
-import dva from 'typed-dva';
-import count from './models/count';
-import router from './router';
-// import "babel-polyfill"
+import dva from 'typed-dva'
+import count from './models/count'
+import router from './router'
 
-const app = dva();
-app.model(count);
-app.router(router);
-app.start('#root');
+const app = dva()
+app.model(count)
+app.router(router)
+app.start('#root')

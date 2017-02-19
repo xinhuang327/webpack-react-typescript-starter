@@ -8,18 +8,18 @@ function Adder(props) {
 			<h1 className={styles.title}>Adder</h1>
 			Count: {props.count}
 			<hr />
-			<button onClick={() => { props.dispatch({ type: 'count/add' }); }}>Add~~</button>
-			<button onClick={() => { props.dispatch({ type: 'count/addWithDelay' }); }}>Add With Delay</button>
-			<button onClick={() => { props.dispatch({ type: 'count/minus' }); }}>Minus</button>
-			<button onClick={() => { props.dispatch({ type: 'count/redirect' }); }}>redirect</button>
+			<button onClick={() => { props.dispatch({ type: 'count/add' }) }}>Add~~</button>
+			<button onClick={() => { props.dispatch({ type: 'count/addWithDelay' }) }}>Add With Delay</button>
+			<button onClick={() => { props.dispatch({ type: 'count/minus' }) }}>Minus</button>
+			<button onClick={() => { props.dispatch({ type: 'count/redirect' }) }}>redirect</button>
 		</div>
-	);
+	)
 }
 
 function mapStateToProps(state) {
 	return {
 		count: state.count,
-	};
+	}
 }
 
-export default connect(mapStateToProps)(Adder);
+export default connect(mapStateToProps)(Adder)
