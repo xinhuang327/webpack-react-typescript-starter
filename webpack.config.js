@@ -25,14 +25,17 @@ module.exports = {
 		rules: [
 			{
 				test: /\.tsx?$/,
-				loader: ['react-hot-loader', 'ts-loader'],
+				use: [
+					'react-hot-loader',
+					'babel-loader',
+					'ts-loader'
+				],
 				exclude: /node_modules/,
 			},
 			{
 				test: /\.js$/, //Check for all js files
-				use: [{
-					loader: 'babel-loader',
-				}]
+				use: ['babel-loader'],
+				exclude: /node_modules/,
 			},
 			{
 				test: /\.scss$/,

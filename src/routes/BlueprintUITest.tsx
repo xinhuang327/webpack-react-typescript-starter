@@ -9,7 +9,7 @@ import {
 	Position
 } from "@blueprintjs/core"
 
-import "@blueprintjs/core/dist/blueprint.css"
+// import "@blueprintjs/core/dist/blueprint.css"
 
 function BlueprintUITest(props) {
 	const menu = (
@@ -22,7 +22,7 @@ function BlueprintUITest(props) {
 		</Menu>
 	)
 	return (
-		<Popover content={menu} position={Position.BOTTOM_RIGHT}>
+		<Popover content={menu} position={Position.BOTTOM_LEFT}>
 			<Button text="Actions" />
 		</Popover>
 	)

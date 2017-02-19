@@ -5,8 +5,6 @@
 		"patchfiles": "sed -i .bak 's/interface WeakMap<K, V>/interface WeakMap<K extends object, V>/g' ./node_modules/@types/lodash/index.d.ts"
 	},
 	"devDependencies": {
-		"@types/es6-shim": "^0.31.32",
-		"@types/moment": "^2.13.0",
 		"@types/pure-render-decorator": "^0.2.27",
 		"@types/react-addons-css-transition-group": "^15.0.1",
 		"babel-core": "^6.22.1",
