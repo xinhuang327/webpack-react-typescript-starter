@@ -1,9 +1,10 @@
-var webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var webpack = require('webpack')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
 	context: __dirname + '/src', // `__dirname` is root of project and `src` is source
 	entry: [
+		'react-hot-loader/patch',
 		'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
 		'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
 		'./app.tsx',
@@ -15,6 +16,7 @@ module.exports = {
 	},
 	devServer: {
 		contentBase: __dirname + '/src',
+		hot: true,
 	},
 	resolve: {
 		extensions: [".tsx", ".ts", ".js"]
@@ -23,7 +25,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.tsx?$/,
-				loader: ['react-hot-loader', 'ts-loader'],
+				loader: ['react-hot-loader/webpack', 'ts-loader'],
 				exclude: /node_modules/,
 			},
 			{
@@ -66,4 +68,4 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin(),
 		new ExtractTextPlugin("[name].css"),
 	]
-};
+}

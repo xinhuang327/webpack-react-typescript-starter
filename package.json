@@ -1,9 +1,11 @@
 {
 	"scripts": {
-		"start": "webpack-dev-server",
-		"build": "webpack --config webpack.config.prod.js --optimize-minimize --define process.env.NODE_ENV='\"production\"'"
+		"start": "npm run patchfiles && webpack-dev-server",
+		"build": "npm run patchfiles && webpack --config webpack.config.prod.js --optimize-minimize --define process.env.NODE_ENV='\"production\"'",
+		"patchfiles": "sed -i .bak 's/interface WeakMap<K, V>/interface WeakMap<K extends object, V>/g' ./node_modules/@types/lodash/index.d.ts"
 	},
 	"devDependencies": {
+		"@types/node": "^7.0.5",
 		"babel-core": "^6.22.1",
 		"babel-loader": "^6.2.10",
 		"babel-preset-es2015": "^6.22.0",
@@ -15,7 +17,7 @@
 		"less-loader": "^2.2.3",
 		"lodash": "^4.17.4",
 		"postcss-loader": "^1.2.2",
-		"react-hot-loader": "^1.3.1",
+		"react-hot-loader": "next",
 		"style-loader": "^0.13.1",
 		"ts-loader": "^2.0.0",
 		"typescript": "^2.1.5",
