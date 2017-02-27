@@ -1,11 +1,9 @@
 {
 	"compilerOptions": {
-		"outDir": "./dist/",
-		"sourceMap": true,
-		"noImplicitAny": true,
-		"module": "commonjs",
-		"target": "es5",
-		"jsx": "react",
+		"sourceMap": false,
+		"noImplicitAny": false,
+		"target": "es2015",
+		"jsx": "preserve",
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true
 	}

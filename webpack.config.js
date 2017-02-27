@@ -25,14 +25,13 @@ module.exports = {
 		rules: [
 			{
 				test: /\.tsx?$/,
-				loader: ['react-hot-loader/webpack', 'ts-loader'],
+				loader: ['babel-loader', 'ts-loader'],
 				exclude: /node_modules/,
 			},
 			{
 				test: /\.js$/, //Check for all js files
 				use: [{
-					loader: 'babel-loader',
-					options: { presets: ['es2015'] }
+					loader: 'babel-loader'
 				}]
 			},
 			{
