@@ -1,7 +1,9 @@
 {
 	"compilerOptions": {
 		"sourceMap": false,
-		"noImplicitAny": false,
+		"noImplicitAny": true,
+		"moduleResolution": "node",
+		"module": "es2015",
 		"target": "es2015",
 		"jsx": "preserve",
 		"allowJs": true,
